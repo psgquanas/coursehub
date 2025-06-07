@@ -22,7 +22,7 @@ export const getAllCourses = async (req, res) => {
 export const getCourseId = async (req, res) => {
   const { id } = req.params;
   try {
-    const courseData = await Course.find(id).populate({ path: "educator" });
+    const courseData = await Course.findById(id).populate({ path: "educator" });
 
     //remove lectureUrl if isPreview is false
     courseData.courseContent.forEach((chapter) => {
@@ -38,5 +38,3 @@ export const getCourseId = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
-
-
